@@ -22,9 +22,7 @@ import {
 import axios from "axios";
 import Toast from "../providers/toast.jsx";
 import { toast } from "react-hot-toast";
-import { parse } from "postcss";
-import { useSetState } from "@mantine/hooks";
-
+import moment from "moment/moment.js";
 
 
 const Cart = () => {
@@ -69,6 +67,18 @@ const Cart = () => {
                 deleteItem(item._id, item.name);
                 axios.post('api/updateBalance', {aId, newBalance})
                 .then(() => {
+                    const state = "Item Purchase"
+                    const date = moment().format("DD/MM/YYYY");
+                    const time = moment().format("HH:mm");
+                    const uId = data._id;
+                    const amount = total;
+                    console.log(date, time, state, amount, newBalance);
+                    axios.post('api/transaction', {state, amount, newBalance, date, time, uId})
+                        .then(() => {
+                            toast.success("Transaction Successful");
+                        }).catch((error) => {
+                            toast.error("Transaction coudn't be completed");
+                        })
                     window.location.href = '/cart';
                 }).catch((error) => {
                     toast.error("Something went wrong");

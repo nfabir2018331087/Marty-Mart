@@ -27,7 +27,7 @@ const Products = () => {
                 toast.error("Something went wrong");
               })
             }
-        else toast.error("Supplier can't buy products. Create customer account to buy.");
+        else toast.error("Supplier can't buy products. Create a customer account to buy.");
     }
 
     useEffect(() => {

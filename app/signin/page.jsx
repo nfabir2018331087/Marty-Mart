@@ -15,7 +15,6 @@ import {
 
 import Footer from "@/components/footer.jsx";
 import { useEffect, useState } from "react";
-import { signIn } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation.js";
 import Toast from "../providers/toast.jsx";
 import { toast } from "react-hot-toast";

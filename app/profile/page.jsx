@@ -21,6 +21,7 @@ import { faUser, faWallet, faBangladeshiTakaSign, faLock, faFileInvoiceDollar, f
 import axios from "axios";
 import Toast from "../providers/toast.jsx";
 import { toast } from "react-hot-toast";
+import moment from "moment/moment.js";
 
 
 const Profile = () => {
@@ -32,9 +33,11 @@ const Profile = () => {
     const [acSecret, setAcSecret] = useState(0);
     const [bank, setBank] = useState("");
     const [balance, setBalance] = useState(0);
+    const [amount, setAmount] = useState(0);
     const [account, setAccount] = useState({});
     const [state, setState] = useState("");
     const [acc, setAcc] = useState([]);
+    const [transactions, setTransactions] = useState([])
 
     const handleDialog = () => setOpen((cur) => !cur);
     const handleStateD = () => {
@@ -64,6 +67,8 @@ const Profile = () => {
     const handleUpdate = (aId, accountSecret, newBalance) => {
         setOpen((cur) => !cur);
         console.log(aId, accountSecret, newBalance);
+        console.log(moment().format("DD/MM/YYYY"));
+        console.log(moment().format("HH:mm"));
         if(accountSecret !== account.secret) {
             toast.error("Invalid account secret!");
         }
@@ -73,8 +78,16 @@ const Profile = () => {
         else {
             axios.post('api/updateBalance', {aId, newBalance})
                 .then(() => {
-                    if(state === "deposit") toast.success("Your Account Diposited Successfully");
-                    else toast.success("Money withdrawn from your wallet successfully")
+                    const date = moment().format("DD/MM/YYYY");
+                    const time = moment().format("HH:mm");
+                    const uId = data._id;
+                    console.log(date, time, state, amount, newBalance);
+                    axios.post('api/transaction', {state, amount, newBalance, date, time, uId})
+                        .then(() => {
+                            toast.success("Transaction Successful");
+                        }).catch((error) => {
+                            toast.error("Transaction coudn't be completed");
+                        })
                     window.location.href = '/profile';
                 }).catch((error) => {
                     toast.error("Something went wrong");
@@ -92,9 +105,11 @@ const Profile = () => {
                 const fetchAccounts = async (id) => {
                     try{
                         const response = await axios.post('api/findAccount', {id});
+                        const res = await axios.post('api/findTrx', {id}); 
                         setAcc(response.data.account);
                         setAccount(response.data.account[0]);  
-                        // console.log(acc.length);
+                        setTransactions(res.data.transactions);
+                        console.log(transactions);
                         if(acc.length !== 0) setIsAccount(true);
                         setLoading(false);
                         // console.log(response.data.cartItems);
@@ -119,9 +134,9 @@ const Profile = () => {
         <>
         <Toast />
         <Navbar />
-        <h1 className="text-center text-5xl bg-gray-100 py-5 font-semibold tracking-wider text-emerald-400">{data.name}'s Dashboard</h1>
+        <h1 className="text-center text-5xl bg-gray-100 py-5 font-semibold tracking-wider">{data.name}'s Dashboard</h1>
         <div className="mx-20">
-            <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-black mt-10 bg-gray-100 p-5 rounded-lg"><FontAwesomeIcon icon={faUser}/> Your Profile Information</h2>
+            <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faUser}/> Your Profile Information</h2>
             <div className="flex justify-around">
             <div className="mt-10">
                 <p className="text-xl font-semibold py-5">Name: <span className="text-3xl ml-5 border border-gray-200 p-2 rounded-md bg-gray-100">{data.name}</span></p>
@@ -172,7 +187,7 @@ const Profile = () => {
         :
         <div>
         <div className="mx-20 mt-28">
-            <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-black mt-10 bg-gray-100 p-5 rounded-lg"><FontAwesomeIcon icon={faWallet}/> Your Wallet Information</h2>
+            <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faWallet}/> Your Wallet Information</h2>
             <div className="flex justify-around">
             <div className="mt-10">
                 <p className="text-lg font-semibold py-5">Account Number: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faFileInvoiceDollar}/> {account?.accountNo}</span></p>
@@ -195,7 +210,11 @@ const Profile = () => {
                     </Typography>
                 </CardHeader>
                 <CardBody className="flex flex-col gap-4">
-                    <Input label="Amount of Money" type="number" className="focus:ring-0" size="lg" onChange={(e) => setBalance(account.balance + +e.target.value)}/>
+                    <Input label="Amount of Money" type="number" className="focus:ring-0" size="lg" onChange={(e) => {
+                        setBalance(account.balance + +e.target.value);
+                        setAmount(e.target.value);
+                    }
+                    }/>
                     <Input label="Account Secret" size="lg" onChange={(e) => setAcSecret(e.target.value)}/>
                 </CardBody>
                 <CardFooter className="pt-0">
@@ -214,7 +233,11 @@ const Profile = () => {
                     </Typography>
                 </CardHeader>
                 <CardBody className="flex flex-col gap-4">
-                    <Input label="Amount of Money" type="number" className="focus:ring-0" size="lg" onChange={(e) => setBalance(account.balance - e.target.value)}/>
+                    <Input label="Amount of Money" type="number" className="focus:ring-0" size="lg" onChange={(e) => {
+                        setBalance(account.balance - e.target.value);
+                        setAmount(e.target.value);
+                    }
+                    }/>
                     <Input label="Account Secret" size="lg" onChange={(e) => setAcSecret(e.target.value)}/>
                 </CardBody>
                 <CardFooter className="pt-0">
@@ -225,6 +248,58 @@ const Profile = () => {
             </Card>
         </Dialog>
         }
+        <h1 className="mx-auto text-emerald-400 text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-20 bg-gray-100 p-5 rounded-lg"> Your Transaction History</h1>
+        <div className="m-20">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-500 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">
+                                Transaction ID
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Transaction Type
+                            </th>
+                            <th scope="col" className="px-6 py-3"> 
+                                Amount
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                New Balance
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Time & Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { transactions && transactions.length > 0 ? transactions.map((trx) => (
+                        <tr key={trx._id} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            {/* <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {order.itemName}
+                            </th> */}
+                            <td className="px-6 py-4">
+                                {trx?._id}
+                            </td>
+                            <td className="px-6 py-4">
+                               {trx?.type}
+                            </td>
+                            <td className="px-6 py-4">
+                                <FontAwesomeIcon icon={faBangladeshiTakaSign} /> {trx?.amount}
+                            </td>
+                            <td className="px-6 py-4">
+                            <FontAwesomeIcon icon={faBangladeshiTakaSign} /> {trx?.currentBalance}
+                            </td>
+                            <td className="px-6 py-4">
+                                {trx?.date} at {trx?.time}
+                            </td>  
+                        </tr>
+                        ))
+                        : <div className="mx-auto my-5 text-2xl text-center font-semibold">No Transaction History!</div>
+                        }
+                    </tbody>
+                </table>
+            </div> 
+            </div>
         </div>
         }
 

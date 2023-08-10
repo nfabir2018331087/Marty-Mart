@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import db from "@/lib/db";
 import Order from '@/models/Order';
+import User from '@/models/User';
 
 export async function POST(request) {  
   await db();
@@ -9,7 +10,7 @@ export async function POST(request) {
     const { id, type } = await request.json();
     let orders = [];
     if(type === "Customer"){
-      orders = await Order.find({buyer: id}).populate("seller");
+      orders = await Order.find({buyer: id}).populate('seller');
     }
     else {
       orders = await Order.find({seller: id});

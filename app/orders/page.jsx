@@ -8,17 +8,12 @@ import axios from "axios";
 import { faTrashCan, faBangladeshiTakaSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Spinner } from "@material-tailwind/react";
+import moment from "moment/moment.js";
 
 const Orders = () => {
+    const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
-    const [orders, setOrders] = useState([]);
-    const [seller, setSeller] = useState([]);
-    const [sellerName, setSellerName] = useState(new Map());
-    const [sellerEmail, setSellerEmail] = useState(new Map());
-    // let ord = [];
-    // const [account, setAccount] = useState({});
-    // const sellerMap = {};
 
     const handleAction = (action, id, price, oId) => {
         let newStat = "";
@@ -37,7 +32,18 @@ const Orders = () => {
                 console.log(aId, newBalance);
                 axios.post('api/updateBalance', {aId, newBalance})
                 .then(() => {
-                    console.log("Success");
+                    const state = "Item Sell";
+                    const date = moment().format("DD/MM/YYYY");
+                    const time = moment().format("HH:mm");
+                    const uId = id;
+                    const amount = price;
+                    console.log(date, time, state, amount, newBalance);
+                    axios.post('api/transaction', {state, amount, newBalance, date, time, uId})
+                        .then(() => {
+                            toast.success("Transaction Successful");
+                        }).catch((error) => {
+                            toast.error("Transaction coudn't be completed");
+                        })
                 }).catch((error) => {
                     console.log(error);
                 })
@@ -57,7 +63,18 @@ const Orders = () => {
                 console.log(aId, newBalance);
                 axios.post('api/updateBalance', {aId, newBalance})
                 .then(() => {
-                    console.log("Success");
+                    const state = "Order Cancel";
+                    const date = moment().format("DD/MM/YYYY");
+                    const time = moment().format("HH:mm");
+                    const uId = id;
+                    const amount = price;
+                    console.log(date, time, state, amount, newBalance);
+                    axios.post('api/transaction', {state, amount, newBalance, date, time, uId})
+                        .then(() => {
+                            toast.success("Transaction Successful");
+                        }).catch((error) => {
+                            toast.error("Transaction coudn't be completed");
+                        })
                 }).catch((error) => {
                     console.log(error); 
                 })
@@ -80,15 +97,15 @@ const Orders = () => {
             const data = verifyJwt(token);
             console.log(data);
             if(data){
-                // setLoading(false);
+                setLoading(false);
                 setData(data);
                 const fetchOrders = async (id, type) => {
                     try{
                         const response = await axios.post('api/findOrders', {id, type});
-                        setOrders(response.data.orders);
+                        setOrders(response.data.orders); 
                         // ord = response.data.orders;
                         console.log(orders);
-                        setLoading(false);
+                        // setLoading(false); 
                     } catch(error) {
                         console.error(error);
                     }
@@ -182,7 +199,7 @@ const Orders = () => {
                                 :
                                 order.orderStat === "Shipped"
                                 ?
-                                <button onClick={() => handleAction("s",order.seller, order.orderPrice, order._id)} className="py-2 px-4 font-bold cursor-pointer bg-emerald-500 w-fit rounded-md text-white hover:bg-emerald-700">Recieved?</button>
+                                <button onClick={() => handleAction("s", order.seller, order.orderPrice, order._id)} className="py-2 px-4 font-bold cursor-pointer bg-emerald-500 w-fit rounded-md text-white hover:bg-emerald-700">Recieved?</button>
                                 :
                                 <div className="font-bold">None</div>
                                 }

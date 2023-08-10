@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
-import Product from "@/models/Product";
 import db from "@/lib/db";
+import Transaction from '@/models/Transaction';
 
-export async function GET(request) {  
+export async function POST(request) {  
   await db();
   try {
     // await main();
-    const products = await Product.find({})
-    // console.log(products)
+    const { id } = await request.json();
+    const transactions = await Transaction.find({userId: id});
+    console.log(transactions);
     return NextResponse.json(
-      {message: "OK", products},
+      {message: "OK", transactions},
       { status: 200}
     )
   } catch (error) {
@@ -18,8 +19,4 @@ export async function GET(request) {
       { status: 500}
       )
   } 
-//   finally {
-//     await prisma.$disconnect();
-//   }
-  
 }
