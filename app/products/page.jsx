@@ -16,6 +16,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
+    const name = "fixed";
 
     const addToCart = (img, pname, category, pprice, supplierId, uid, prodId) => {
         console.log(img, pname, category, pprice, uid, supplierId);
@@ -82,10 +83,10 @@ const Products = () => {
             </div>
         </div>  
         )))
-    : <div>Loading...</div> 
+    : <div className="font-bold text-2xl m-20 text-gray-500 text-center">No Products Available Right Now!</div> 
     } 
         </div>
-        <Footer /> 
+        <Footer name={name} /> 
         </>
      );
     }

@@ -228,7 +228,7 @@ const Orders = () => {
                 <button onClick={() => window.location.href = '/products'} className="mx-auto my-32 text-lg px-5 py-3 border-2 border-emerald-400 rounded-md hover:bg-emerald-400 hover:shadow-xl transition duration-300 hover:text-white hover:scale-105">Explore More Products</button>
             </div>
         </div>
-        <Footer /> 
+        <Footer name={"fixed"}/> 
         </>
      );
     }

@@ -162,7 +162,7 @@ export default function SignIn() {
         </Tabs>
         </Card>
         </div>
-        <Footer />
+        <Footer name={"fixed"}/>
         </>
         );
                     }

@@ -17,8 +17,7 @@ import {
   Typography,
   Input,
   Button,
-  Select,
-  Option } from "@material-tailwind/react";
+  } from "@material-tailwind/react";
 import axios from "axios";
 import Toast from "../providers/toast.jsx";
 import { toast } from "react-hot-toast";
@@ -148,7 +147,7 @@ const Cart = () => {
         <>
         <Toast />
         <Navbar />
-        <div className="h-5/6 bg-gray-100 pt-20">
+        <div className="h-5/6 pt-20">
         <h1 className="mx-auto text-emerald-400 text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mb-10 bg-gray-100 p-5 rounded-lg"> Your Cart</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg md:w-2/3">
@@ -241,10 +240,10 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center bg-gray-100">
+      <div className="flex justify-center">
         <button onClick={() => window.location.href = '/products'} className="mx-auto my-32 text-lg px-5 py-3 border-2 border-emerald-400 rounded-md hover:bg-emerald-400 hover:shadow-xl transition duration-300 hover:text-white hover:scale-105">Explore More Products</button>
       </div>
-      <Footer />
+      <Footer name={"fixed"} />
         </>
      );
     }

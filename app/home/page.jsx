@@ -17,19 +17,6 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
     const [data, setData ] = useState({});
 
-    // const products = await fetchProducts();
-
-    // const [prods, setProducts] = useState(products);
-    // const currentUser = await getCurrentUser();
-    // console.log(products);
-    // const {data: session, status} = useSession();
-    //     const name = session?.user.result.name;
-    //     const email = session?.user.result.email;
-    //     // const token = session?.user.result.token;
-    //     const type = session?.user.result.type;
-  // onUnauthenticated() {
-        //     redirect('/signin');
-        // }
     const handleSignOut = () =>{
         localStorage.removeItem("token");
         window.location.href = '/signin';
@@ -102,7 +89,7 @@ export default function Home() {
                 <div className="bg-white w-60 h-72 hover:m-2 cursor-pointer border border-emerald-200 absolute rounded-lg shadow-xl hover:shadow-2xl transition-all duration-150 ease-out hover:ease-in ">
                     <h1 className="m-4 text-2xl font-bold">Go to your Profile <FontAwesomeIcon icon={faArrowRight}/></h1>
                     <hr className="m-4 rounded-2xl border-t-2"/>
-                    <p className="m-4 text-sm">Go to your profile page. You can view your information there. Your wallet option will also be on your profile. You can check and update your wallet status. And also can view your wallet's transactions.</p>
+                    <p className="m-4 text-sm">Go to your profile page. You can view your information there. Your wallet option will also be on your profile. You can check and update your wallet status. And also can view your wallet&apos;s transactions.</p>
                 </div>
             </div>
             <div className="bg-emerald-300 w-60 h-72 m-8 static rounded-lg ">
@@ -116,7 +103,7 @@ export default function Home() {
                 <div onClick={() => window.location.href = '/orders'} className="bg-white w-60 h-72 hover:m-2 cursor-pointer border border-emerald-200 absolute rounded-lg shadow-xl hover:shadow-2xl transition-all duration-150 ease-out hover:ease-in ">
                     <h1 className="m-4 text-2xl font-bold">See your Orders <FontAwesomeIcon icon={faArrowRight}/></h1>
                     <hr className="m-4 rounded-2xl border-t-2"/>
-                    <p className="m-4 text-sm">Go to your order page. You can see the status of your order there. If you are a customer you can get updated about your orders' states. If you are a supplier you can view how many orders you've got and take actions on that.</p>
+                    <p className="m-4 text-sm">Go to your order page. You can see the status of your order there. If you are a customer you can get updated about your orders&apos; states. If you are a supplier you can view how many orders you&apos;ve got and take actions on that.</p>
                 </div>
             </div>
         </div>        
@@ -130,6 +117,5 @@ export default function Home() {
     )
 
 }
-// import { prisma } from "../../server/db/prismadb.js";
 
 

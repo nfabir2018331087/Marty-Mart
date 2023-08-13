@@ -134,7 +134,7 @@ const Profile = () => {
         <>
         <Toast />
         <Navbar />
-        <h1 className="text-center text-5xl bg-gray-100 py-5 font-semibold tracking-wider">{data.name}'s Dashboard</h1>
+        <h1 className="text-center text-5xl bg-gray-100 py-5 font-semibold tracking-wider">{data.name}&apos;s Dashboard</h1>
         <div className="mx-20">
             <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faUser}/> Your Profile Information</h2>
             <div className="flex justify-around">
@@ -150,7 +150,7 @@ const Profile = () => {
         <div>
         <div className="flex justify-center">
             <div className="my-28">
-                <p className="text-center pb-2">Haven't set up your wallet yet?</p>
+                <p className="text-center pb-2">Haven&apos;t set up your wallet yet?</p>
                 <button onClick={handleDialog} className=" text-lg px-5 py-3 border-2 border-emerald-400 rounded-md hover:bg-emerald-400 hover:shadow-xl transition duration-300 hover:text-white">Enter Your Account Information <FontAwesomeIcon icon={faFileInvoiceDollar}/></button>
             </div>
         </div>
@@ -303,7 +303,7 @@ const Profile = () => {
         </div>
         }
 
-        <Footer />
+        <Footer name={"fixed"}/>
         </>
      );
     }

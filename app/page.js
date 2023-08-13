@@ -91,29 +91,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            {/* <div className='flex justify-center w-full'>
-            <h1 className="text-white text-2xl font-semibold my-4 text-center">
-                Do not have an account? Join Us
-            </h1>
-            </div>
-            <div className="pt-6 w-full md:w-12/12 px-[260px] text-center">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                <div className="px-4 py-5 flex-auto">
-                  <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full">
-                  <a href="/signup">
-                        <button className="bg-emerald-400 transition duration-300 px-4 py-3 rounded-full  border border-[#F0F0F6] shadow-xl mt-4 hover:bg-emerald-600">
-                            <i className="fa-solid fa-file-pen"></i>  Register
-                        </button>						
-                        </a>
-                  </div>
-                  <h6 className="text-xl font-semibold">Create an account</h6>
-                  <p className="mt-2 mb-4 text-blueGray-500">
-                    If you are looking for a trusted place to sell or buy your preferred products.
-                     Then register to our website and enjoy tons of features.
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
     </section>

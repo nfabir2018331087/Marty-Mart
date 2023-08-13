@@ -99,7 +99,7 @@ export default function SignUp() {
       </form>
     </Card>
     </div>
-    <Footer />
+    <Footer name={"fixed"}/>
     </>
   );
   }
