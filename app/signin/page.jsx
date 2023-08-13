@@ -19,6 +19,7 @@ import { redirect, useRouter } from "next/navigation.js";
 import Toast from "../providers/toast.jsx";
 import { toast } from "react-hot-toast";
 import { verifyJwt } from "@/lib/jwt.js";
+import axios from "axios";
 
 export default function SignIn() {
     const button = "Register";
@@ -47,51 +48,31 @@ export default function SignIn() {
         setType('Customer');
         // console.log(type, email, password);
         try{
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/login`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email: email,
-                  password: password,
-                }),
-              });
-            //   console.log(await res.json());
-              const data = await res.json();
-              const token = data.result.token;
-              localStorage.setItem("token",token);
-              toast.success("Logged In Successfully");
-              push('/home');
-            }catch(error){
-                console.log(error);
-                toast.error("Invalid Credentials");
-            }
+            const response = await axios.post('api/login', {email, password});
+            const data = await response.data;
+            const token = data.result.token;
+            localStorage.setItem("token",token);
+            toast.success("Logged In Successfully");
+            push('/home');
+        }catch(error){
+            console.log(error);
+            toast.error("Invalid Credentials");
+        }
     }
     const handleSupplierSubmit = async (e) => {
         e.preventDefault();
         setType("Supplier");
         try{
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/login`, {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      email: email,
-                      password: password,
-                    }),
-                  });
-                //   console.log(await res.json());
-                  const data = await res.json();
-                  const token = data.result.token;
-                  localStorage.setItem("token",token);
-                  toast.success("Logged In Successfully");
-                  push('/home');
-                }catch(error){
-                    console.log(error);
-                    toast.error("Invalid Credentials");
-                }
+            const response = await axios.post('api/login', {email, password});
+            const data = await response.data;
+            const token = data.result.token;
+            localStorage.setItem("token",token);
+            toast.success("Logged In Successfully");
+            push('/home');
+        }catch(error){
+            console.log(error);
+            toast.error("Invalid Credentials");
+        }
     }
     if(!loading){
     return (
@@ -165,10 +146,10 @@ export default function SignIn() {
         <Footer name={"fixed"}/>
         </>
         );
-                    }
-                    else return (
-                        <div className="pt-80 flex justify-center"><Spinner color ="green" className="h-14 w-14" />;</div>
-                    )
+        }
+        else return (
+            <div className="pt-80 flex justify-center"><Spinner color ="green" className="h-14 w-14" />;</div>
+        )
     }
     
     
