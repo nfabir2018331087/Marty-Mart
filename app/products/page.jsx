@@ -85,7 +85,7 @@ const Products = () => {
     : <div className="font-bold text-2xl m-20 text-gray-500 text-center">No Products Available Right Now!</div> 
     } 
         </div>
-        <Footer name={name} /> 
+        <Footer name={"fixed"} /> 
         </>
      );
     }
