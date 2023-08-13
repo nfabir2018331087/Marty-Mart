@@ -16,7 +16,6 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
-    const name = "fixed";
 
     const addToCart = (img, pname, category, pprice, supplierId, uid, prodId) => {
         console.log(img, pname, category, pprice, uid, supplierId);
@@ -41,7 +40,7 @@ const Products = () => {
                 setData(data);
                 const fetchProducts = async () => {
                     try{
-                        const response = await axios.get('/api/product');
+                        const response = await axios.get('api/product');
                         setProducts(response.data.products);
                         console.log(products);
                         setLoading(false);
