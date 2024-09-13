@@ -40,10 +40,15 @@ const Products = () => {
                 setData(data);
                 const fetchProducts = async () => {
                     try{
-                        const response = await axios.get('api/product');
-                        setProducts(response.data.products);
-                        console.log(products); 
-                        setLoading(false);
+                        const response = await fetch('api/product');
+                        const res = await response.json();
+                        console.log(res);
+                        if(response.ok){
+                            setProducts(res.products);
+                            // console.log(products); 
+                            setLoading(false);
+                        }
+                        
                     } catch(error) {
                         console.error(error);
                     }
@@ -65,9 +70,9 @@ const Products = () => {
         <Toast />
         <Navbar />
         <div className="mt-10 pl-10 ">
-            <h1 className="w-auto text-4xl font-semibold">All the available Products:</h1>
+            <h1 className="w-auto lg:text-4xl text-2xl font-semibold">All the available Products:</h1>
         </div>
-        <div className="grid grid-cols-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         { products && products.length > 0 ? (products.map((prod) => (
         <div key = {prod._id} className="mx-auto my-11 w-80 border border-gray-200 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
             <img className="h-48 w-full object-cover object-center" src={prod.image} alt="Product Image" />
@@ -85,7 +90,7 @@ const Products = () => {
     : <div className="font-bold text-2xl m-20 text-gray-500 text-center">No Products Available Right Now!</div> 
     } 
         </div>
-        <Footer name={"fixed"} /> 
+        <Footer /> 
         </>
      );
     }

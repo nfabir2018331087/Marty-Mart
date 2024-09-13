@@ -84,7 +84,7 @@ export default function Home() {
             <p className="text-center text-3xl pt-10 font-semibold">Explore the Greatness!</p>
         </div>
 
-        <div className="grid place-items-center grid-cols-3 gap-4 py-10 px-32 mx-auto">
+        <div className="grid place-items-center lg:grid-cols-3 grid-cols-1 gap-4 py-10 px-32 mx-auto">
             <div onClick={() => window.location.href = '/profile'} className="bg-emerald-300 w-60 h-72 m-8 static rounded-lg ">
                 <div className="bg-white w-60 h-72 hover:m-2 cursor-pointer border border-emerald-200 absolute rounded-lg shadow-xl hover:shadow-2xl transition-all duration-150 ease-out hover:ease-in ">
                     <h1 className="m-4 text-2xl font-bold">Go to your Profile <FontAwesomeIcon icon={faArrowRight}/></h1>

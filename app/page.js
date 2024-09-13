@@ -24,14 +24,14 @@ export default function Home() {
     <>
     <Navbar button={button} url = {targetRef}/>
 
-    <section className="flex justify-around font-sans px-20 m-auto h-screen pt-20">
+    <section className="flex lg:flex-row flex-col lg:justify-around justify-center font-sans px-20 m-auto h-screen lg:pt-20 pt-5">
         <div className="px-2 pt-36 w-full lg:w-3/5">
             <div className="mb-8 text-center">
-                <h2 className="mb-4 text-4xl font-bold text-left lg:text-5xl">
+                <h2 className="mb-4 text-4xl font-bold lg:text-left lg:text-5xl">
                     Welcome to <span className="text-5xl text-emerald-400"> Marty Mart</span>. Most trusted and authentic place for you.
                 </h2>
 
-                <p className="visible mx-0 mt-3 mb-0 pr-16 text-sm leading-relaxed text-left text-slate-400">
+                <p className="visible mx-0 mt-3 mb-0 lg:pr-16 text-sm leading-relaxed lg:text-left text-slate-400">
                     You can sell your products and earn money from here. You can also buy products
                     from here. As your e-commerce partner, we are here for you all the time with full transparency.
                 </p>
@@ -49,14 +49,14 @@ export default function Home() {
         className="flex flex-col w-full h-screen bg-cover bg-fixed bg-center justify-center items-center"
         style={{backgroundImage : `url(${bgimg.src})`}}>
 
-        <h1 className=" text-white text-5xl font-semibold my-20">
+        <h1 className=" text-white lg:text-5xl text-3xl font-semibold my-20">
             Get Started With Us
         </h1>
 
-        <div className="container mx-auto px-48">
-          <div className="flex flex-wrap">
-          <div className="pt-6 w-full md:w-6/12 px-12 text-center transform duration-300 hover:scale-105">
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-xl">
+        <div className="container mx-auto lg:px-48 px-8">
+          <div className="flex lg:flex-row flex-col">
+          <div className="pt-6 w-full lg:px-12 text-center transform duration-300 hover:scale-105">
+              <div className="relative flex flex-col break-words bg-white w-full mb-8 shadow-lg rounded-xl">
                 <div className="px-4 py-5 flex-auto">
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-auto h-12 mb-5 rounded-full">
                   <a href="/signup">
@@ -73,7 +73,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full pt-6 md:w-6/12 px-12 text-center transform duration-300 hover:scale-105">
+            <div className="w-full pt-6 lg:px-12 text-center transform duration-300 hover:scale-105">
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-xl">
                 <div className="px-4 py-5 flex-auto">
                   <div className="text-white p-3 text-center inline-flex items-center justify-center w-auto h-12 mb-5 rounded-full bg-lightBlue-400">

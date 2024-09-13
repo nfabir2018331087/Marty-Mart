@@ -29,7 +29,7 @@ module.exports = withMT({
           900: '#064e3b',
           950: '#022c22'
           }
-      }
+      },
     },
   },
   plugins: [

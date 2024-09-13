@@ -85,7 +85,7 @@ if(!loading){
       <Toast />
       <Navbar />
         
-      <div className="p-20 mx-auto my-20 border border-gray-200 rounded-2xl shadow-lg w-2/3 ">
+      <div className="p-5 lg:p-20 mx-auto my-20 border border-gray-200 rounded-2xl shadow-lg lg:w-2/3 w-4/5 ">
       <Typography variant="h2" color="blue-gray" className="text-center text-emerald-500">
         Add a Product
       </Typography>

@@ -137,13 +137,13 @@ const Profile = () => {
         <h1 className="text-center text-5xl bg-gray-100 py-5 font-semibold tracking-wider">{data.name}&apos;s Dashboard</h1>
         <div className="mx-20">
             <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faUser}/> Your Profile Information</h2>
-            <div className="flex justify-around">
-            <div className="mt-10">
-                <p className="text-xl font-semibold py-5">Name: <span className="text-3xl ml-5 border border-gray-200 p-2 rounded-md bg-gray-100">{data.name}</span></p>
-                <p className="text-xl font-semibold py-5">Email: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100">{data.email}</span></p>
-                <p className="text-md font-semibold py-5">You are a <span className="text-emerald-400 border border-gray-200 p-2 rounded-md bg-gray-100">{data.type}</span></p>
+            <div className="flex flex-col items-center lg:flex-row lg:justify-around">
+            <div className="mt-10 lg:order-1 order-2">
+                <p className="text-xl font-semibold py-5">Name: <span className="text-3xl ml-5 p-2 rounded-md">{data.name}</span></p>
+                <p className="text-xl font-semibold py-5">Email: <span className="ml-5 p-2 rounded-md">{data.email}</span></p>
+                <p className="text-md font-semibold py-5">You are a <span className="text-emerald-400  p-2 rounded-md">{data.type}.</span></p>
             </div>
-            <img className="rounded-full h-56 w-56 my-5" src="AnonymousProfilePic.jpg" alt="profile pic" />
+            <img className="rounded-full h-56 w-56 my-5 lg:order-2 order-1" src="AnonymousProfilePic.jpg" alt="profile pic" />
             </div>
         </div>
         { !isAccount && acc.length === 0 ?
@@ -155,7 +155,7 @@ const Profile = () => {
             </div>
         </div>
         <Dialog size="md" open={open} handler={handleDialog} className="bg-transparent shadow-none">
-            <Card className="mx-auto w-full max-w-[24rem]">
+            <Card className="mx-auto w-full max-w-[24rem] min-w-fit">
                 <CardHeader variant="gradient" className="mb-4 grid h-28 place-items-center bg-emerald-400">
                     <Typography variant="h3" color="white">
                         Enter Account Details
@@ -188,7 +188,7 @@ const Profile = () => {
         <div>
         <div className="mx-20 mt-28">
             <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faWallet}/> Your Wallet Information</h2>
-            <div className="flex justify-around">
+            <div className="flex lg:flex-row lg:justify-around flex-col items-center">
             <div className="mt-10">
                 <p className="text-lg font-semibold py-5">Account Number: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faFileInvoiceDollar}/> {account?.accountNo}</span></p>
                 <p className="text-lg font-semibold py-5">Account Secret: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faLock}/> {account?.secret}</span></p>
@@ -196,14 +196,14 @@ const Profile = () => {
             </div>
             <div className="text-center border-[6px] border-emerald-400 rounded-full px-10 py-24 m-5">Your Account Balance: <p className="font-bold text-lg"><FontAwesomeIcon icon={faBangladeshiTakaSign}/> {account?.balance} BDT</p></div>
             </div>
-            <div className="mx-96 my-10 flex justify-around">
+            <div className="mx-auto my-10 flex justify-center gap-2">
                 <button onClick={handleStateD} className="px-5 py-3 border-2 border-emerald-400 rounded-md hover:bg-emerald-400 hover:shadow-xl transition duration-200 hover:text-white">Deposit</button>
                 <button onClick={handleStateW} className="px-5 py-3 border-2 border-emerald-400 rounded-md hover:bg-emerald-400 hover:shadow-xl transition duration-200 hover:text-white">Withdraw</button>
             </div>
         </div>
         { state === "deposit" ?
         <Dialog size="md" open={open} handler={handleDialog} className="bg-transparent shadow-none">
-            <Card className="mx-auto w-full max-w-[24rem]">
+            <Card className="mx-auto w-full max-w-[24rem] min-w-fit">
                 <CardHeader variant="gradient" className="mb-4 grid h-28 place-items-center bg-emerald-400">
                     <Typography variant="h3" color="white">
                         Add Money
@@ -226,7 +226,7 @@ const Profile = () => {
         </Dialog>
         :
         <Dialog size="md" open={open} handler={handleDialog} className="bg-transparent shadow-none">
-            <Card className="mx-auto w-full max-w-[24rem]">
+            <Card className="mx-auto w-full max-w-[24rem] min-w-fit">
                 <CardHeader variant="gradient" className="mb-4 grid h-28 place-items-center bg-emerald-400">
                     <Typography variant="h3" color="white">
                         Withdraw Money

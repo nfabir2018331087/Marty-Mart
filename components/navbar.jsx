@@ -47,13 +47,13 @@ const Navbar = ({button, url}) => {
         else window.location.href = '/';
     }
     return (  
-        <div className="top-0 flex justify-between items-center w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 border-b border-gray-200">
+        <div className="top-0 flex flex-row justify-between items-center w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 border-b border-gray-200">
             <div className="flex flex-row items-center justify-between p-4 cursor-pointer">
                 <img src="mm.png" className="h-9 w-14"/>
                 <a onClick={handleR} className="text-xl font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">Marty Mart</a>
             </div>
             <div>
-                <nav  className="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
+                <nav  className="flex-col flex-grow pb-4 md:pb-0 flex lg:justify-end lg:flex-row">
                     { isAuthenticated ? 
                     (<>
                     { data.type === "Supplier" ?
@@ -78,7 +78,7 @@ const Navbar = ({button, url}) => {
                         </Menu>
                     
                     </>) :
-                    <a  onClick={ handleClick } className="inline-flex items-center justify-center transition duration-300 px-5 py-3 mr-6 text-base font-medium text-center text-white rounded-lg bg-emerald-400 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 dark-mode:focus:ring-blue-900 cursor-pointer">
+                    <a  onClick={ handleClick } className="flex items-center justify-center transition duration-300 px-5 py-3 mr-6 text-base font-medium text-center text-white rounded-lg bg-emerald-400 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 dark-mode:focus:ring-blue-900 cursor-pointer">
                         {button}
                     <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                 </a>

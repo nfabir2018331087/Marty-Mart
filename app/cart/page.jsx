@@ -148,7 +148,7 @@ const Cart = () => {
         <Toast />
         <Navbar />
         <div className="h-5/6 pt-20">
-        <h1 className="mx-auto text-emerald-400 text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mb-10 bg-gray-100 p-5 rounded-lg"> Your Cart</h1>
+        <h1 className="mx-auto text-emerald-400 text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mb-10 bg-gray-100 p-5 rounded-lg">Your Cart</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           <div className="rounded-lg md:w-2/3">
           { items && items.length > 0 ? (items.map((item) => (
@@ -156,7 +156,7 @@ const Cart = () => {
             
             <div key={item._id} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start transition duration-200 hover:scale-105 ">
               <img className="mt-5 h-20 w-28 rounded-md" src={item.image} />
-              <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+              <div className="sm:ml-4 flex sm:w-full justify-between">
                 <div className="mt-5 sm:mt-0">
                   <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
                   <p className="mt-1 text-xs text-gray-700">Category: {item.category}</p>
