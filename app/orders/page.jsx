@@ -174,7 +174,7 @@ const Orders = () => {
                             { data.type === "Customer"
                             ?
                             <td className="px-6 py-4">
-                               {order.seller.name} 
+                               {order.seller?.name} 
                             </td>
                             :
                             <td className="px-6 py-4">
@@ -182,7 +182,7 @@ const Orders = () => {
                             </td>
                             }
                             <td className="px-6 py-4">
-                                {data.type === "Customer" ? order.seller.email : order.contact}
+                                {data.type === "Customer" ? order.seller?.email : order.contact}
                             </td>
                             <td className="px-6 py-4">
                                 <FontAwesomeIcon icon={faBangladeshiTakaSign} />{order.orderPrice} 
