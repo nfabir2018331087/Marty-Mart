@@ -5,7 +5,9 @@ import Navbar from '@/components/navbar'
 import Image from 'next/image'
 import bgimg from '../public/com.jpg'
 import Head from 'next/head'
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { redirect, useRouter } from "next/navigation.js";
+import { verifyJwt } from "@/lib/jwt.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePen, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 // import Link from 'react-scroll'
@@ -16,6 +18,16 @@ export default function Home() {
 
     const targetRef = useRef(null);
 
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if(token){
+          const data = verifyJwt(token);
+          if(data){
+              return redirect('/home');
+          }
+      }
+  },[]);
+
     const handleClick = () => {
         window.location.href = '/signin';
     }
@@ -24,8 +36,8 @@ export default function Home() {
     <>
     <Navbar button={button} url = {targetRef}/>
 
-    <section className="flex lg:flex-row flex-col lg:justify-around justify-center font-sans px-20 m-auto h-screen lg:pt-20 pt-5">
-        <div className="px-2 pt-36 w-full lg:w-3/5">
+    <section className="flex lg:flex-row flex-col lg:justify-around justify-center font-sans px-5 lg:px-20 m-auto h-screen lg:pt-20 pt-5">
+        <div className="px-2 lg:pt-36 pt-5 w-full lg:w-3/5 order-2 lg:order-1">
             <div className="mb-8 text-center">
                 <h2 className="mb-4 text-4xl font-bold lg:text-left lg:text-5xl">
                     Welcome to <span className="text-5xl text-emerald-400"> Marty Mart</span>. Most trusted and authentic place for you.
@@ -38,7 +50,7 @@ export default function Home() {
             </div>
         </div>
 
-        <div className="px-3 mb-12 w-full lg:mb-0 lg:w-2/5">
+        <div className="px-3 mb-12 w-full lg:mb-0 lg:w-2/5 order-1 lg:order-2">
             <div className="flex justify-center">
             <Image src={'/ecom.svg'} alt='picture' width={500} height={500} /> 
             </div>

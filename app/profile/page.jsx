@@ -134,14 +134,14 @@ const Profile = () => {
         <>
         <Toast />
         <Navbar />
-        <h1 className="text-center text-5xl bg-gray-100 py-5 font-semibold tracking-wider">{data.name}&apos;s Dashboard</h1>
+        <h1 className="text-center text-3xl md:text-4xl lg:text-5xl bg-gray-100 py-5 font-semibold tracking-wider">{data.name}&apos;s Dashboard</h1>
         <div className="mx-20">
-            <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faUser}/> Your Profile Information</h2>
+            <h2 className="mx-auto text-center text-2xl lg:text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faUser}/> Your Profile Information</h2>
             <div className="flex flex-col items-center lg:flex-row lg:justify-around">
             <div className="mt-10 lg:order-1 order-2">
-                <p className="text-xl font-semibold py-5">Name: <span className="text-3xl ml-5 p-2 rounded-md">{data.name}</span></p>
-                <p className="text-xl font-semibold py-5">Email: <span className="ml-5 p-2 rounded-md">{data.email}</span></p>
-                <p className="text-md font-semibold py-5">You are a <span className="text-emerald-400  p-2 rounded-md">{data.type}.</span></p>
+                <p className="text-xl font-semibold lg:py-5">Name: <span className="text-2xl lg:text-3xl ml-1 lg:ml-5 lg:p-2">{data.name}</span></p>
+                <p className="text-xl font-semibold lg:py-5">Email: <span className="ml-1 break lg:ml-5 lg:p-2">{data.email}</span></p>
+                <p className="text-md font-semibold lg:py-5">You are a <span className="text-emerald-400  lg:p-2">{data.type}.</span></p>
             </div>
             <img className="rounded-full h-56 w-56 my-5 lg:order-2 order-1" src="AnonymousProfilePic.jpg" alt="profile pic" />
             </div>
@@ -187,12 +187,12 @@ const Profile = () => {
         :
         <div>
         <div className="mx-20 mt-28">
-            <h2 className="mx-auto text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faWallet}/> Your Wallet Information</h2>
+            <h2 className="mx-auto text-center text-2xl lg:text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-10 bg-gray-100 p-5 rounded-lg text-emerald-400"><FontAwesomeIcon icon={faWallet}/> Your Wallet Information</h2>
             <div className="flex lg:flex-row lg:justify-around flex-col items-center">
             <div className="mt-10">
-                <p className="text-lg font-semibold py-5">Account Number: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faFileInvoiceDollar}/> {account?.accountNo}</span></p>
-                <p className="text-lg font-semibold py-5">Account Secret: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faLock}/> {account?.secret}</span></p>
-                <p className="text-lg font-semibold py-5">Bank Name: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faBuildingColumns}/> {account?.bank}</span></p>
+                <p className="text-lg font-semibold py-1 lg:py-5">Account Number: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faFileInvoiceDollar}/> {account?.accountNo}</span></p>
+                <p className="text-lg font-semibold py-1 lg:py-5">Account Secret: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faLock}/> {account?.secret}</span></p>
+                <p className="text-lg font-semibold py-1 lg:py-5">Bank Name: <span className="ml-5 border border-gray-200 p-2 rounded-md bg-gray-100"><FontAwesomeIcon icon={faBuildingColumns}/> {account?.bank}</span></p>
             </div>
             <div className="text-center border-[6px] border-emerald-400 rounded-full px-10 py-24 m-5">Your Account Balance: <p className="font-bold text-lg"><FontAwesomeIcon icon={faBangladeshiTakaSign}/> {account?.balance} BDT</p></div>
             </div>
@@ -248,8 +248,8 @@ const Profile = () => {
             </Card>
         </Dialog>
         }
-        <h1 className="mx-auto text-emerald-400 text-center text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-20 bg-gray-100 p-5 rounded-lg"> Your Transaction History</h1>
-        <div className="m-20">
+        <h1 className="mx-auto text-emerald-400 text-center text-2xl lg:text-3xl w-fit border-2 font-bold border-gray-200 border-b-emerald-400 mt-20 bg-gray-100 p-5 rounded-lg"> Your Transaction History</h1>
+        <div className="mx-5 my-16 lg:mx-20">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-500 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
@@ -294,7 +294,7 @@ const Profile = () => {
                             </td>  
                         </tr>
                         ))
-                        : <div className="mx-auto my-5 text-2xl text-center font-semibold">No Transaction History!</div>
+                        : <div className="mx-auto my-5 text-lg lg:text-2xl text-center font-semibold">No Transaction History!</div>
                         }
                     </tbody>
                 </table>
